@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import Main from 'components/Main';
+import { withRouter } from 'react-router-dom';
 import Sidebar from 'components/Sidebar';
+import Topbar from 'components/Topbar';
+import Footer from 'components/Footer';
 
+@withRouter
 export default class Layout extends Component {
   handleType({ children, type }) {
-    if (type === 'full') {
+    if (type === 'noSidebar') {
       return (
         <div>
           <Main>
@@ -14,12 +18,15 @@ export default class Layout extends Component {
       );
     }
 
-    if (type === 'main') {
+    if (type === 'withSidebar') {
       return (
         <div>
           <Sidebar />
+          <Topbar />
           <Main>
+            <Topbar />
             {children}
+            <Footer />
           </Main>
         </div>
       );

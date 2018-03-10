@@ -1,0 +1,290 @@
+// ---------------------------------------------------------
+// @Breakpoints
+// ---------------------------------------------------------
+
+$breakpoint-xl : 1440px;
+$breakpoint-lg : 1200px;
+$breakpoint-md : 992px;
+$breakpoint-sm : 768px;
+$breakpoint-xs : 0;
+
+$breakpoints: (
+  "xl\\+" "screen and (min-width: #{$breakpoint-xl})",
+  "lg\\+" "screen and (min-width: #{$breakpoint-lg})",
+  "md\\+" "screen and (min-width: #{$breakpoint-md})",
+  "sm\\+" "screen and (min-width: #{$breakpoint-sm})",
+  "xs\\+" "screen and (min-width: #{$breakpoint-xs})",
+
+  "xl-" "screen and (max-width: #{$breakpoint-xl - 1px})",
+  "lg-" "screen and (max-width: #{$breakpoint-lg - 1px})",
+  "md-" "screen and (max-width: #{$breakpoint-md - 1px})",
+  "sm-" "screen and (max-width: #{$breakpoint-sm - 1px})",
+
+  "lg" "screen and (min-width: #{$breakpoint-lg - 1px}) and (max-width: #{$breakpoint-xl - 1px})",
+  "md" "screen and (min-width: #{$breakpoint-md - 1px}) and (max-width: #{$breakpoint-lg - 1px})",
+  "sm" "screen and (min-width: #{$breakpoint-sm - 1px}) and (max-width: #{$breakpoint-md - 1px})",
+) !global;
+
+// ---------------------------------------------------------
+// @Variables
+// ---------------------------------------------------------
+
+$responsive: true;
+
+// ---------------------------------------------------------
+// @Media Queries Generator
+// ---------------------------------------------------------
+
+// Mixin used to generate responsive versions of css rules.
+
+@mixin mediaQueryCondition($mq) {
+  $breakpointFound: false;
+
+  @each $breakpoint in $breakpoints {
+    $alias: nth($breakpoint, 1);
+    $condition: nth($breakpoint, 2);
+
+    @if $mq == $alias and $condition {
+      $breakpointFound: true;
+
+      @media #{$condition} {
+        @content;
+      }
+    }
+  }
+
+  @if $breakpointFound == false {
+    @warn "Oops! Breakpoint ‘#{$mq}’ does not exist \:";
+  }
+}
+
+// ---------------------------------------------------------
+// @Responsive Suffix Generator
+// ---------------------------------------------------------
+
+// Mixin used to generate responsive suffixes for classes (i.e. m-10@sm+).
+
+
+@mixin generateResponsive() {
+  @each $breakpoint in $breakpoints {
+    $breakpointAlias     : nth($breakpoint, 1) !global;
+    $breakpointCondition : nth($breakpoint, 2);
+
+    @include mediaQueryCondition($breakpointAlias) {
+      @content;
+    }
+
+    $breakpointAlias: null !global;
+  }
+}
+
+// ---------------------------------------------------------
+// @Base
+// ---------------------------------------------------------
+
+[class*='gutter'] {
+  width: auto !important;
+  overflow: hidden !important;
+}
+
+// ---------------------------------------------------------
+// @gutter (0 > 4 Step 1)
+// ---------------------------------------------------------
+
+@for $i from 0 through 4 {
+  .gutterX-#{$i} {
+    margin-left: #{($i / -2)}px !important;
+    margin-right: #{($i / -2)}px !important;
+
+    & > * {
+      padding-left: #{($i / 2)}px !important;
+      padding-right: #{($i / 2)}px !important;
+    }
+  }
+
+  .gutterY-#{$i} {
+    margin-top: #{($i / -2)}px !important;
+    margin-bottom: #{($i / -2)}px !important;
+
+    & > * {
+      padding-top: #{($i / 2)}px !important;
+      padding-bottom: #{($i / 2)}px !important;
+    }
+  }
+
+  .gutter-#{$i} {
+    margin: #{($i / -2)}px !important;
+
+    & > * {
+      padding: #{($i / 2)}px !important;
+    }
+  }
+
+  @if ($responsive == true) {
+    @include generateResponsive() {
+      .gutterX-#{$i}\@#{$breakpointAlias} {
+        margin-left: #{($i / -2)}px !important;
+        margin-right: #{($i / -2)}px !important;
+
+        & > * {
+          padding-left: #{($i / 2)}px !important;
+          padding-right: #{($i / 2)}px !important;
+        }
+      }
+
+      .gutterY-#{$i}\@#{$breakpointAlias} {
+        margin-top: #{($i / -2)}px !important;
+        margin-bottom: #{($i / -2)}px !important;
+
+        & > * {
+          padding-top: #{($i / 2)}px !important;
+          padding-bottom: #{($i / 2)}px !important;
+        }
+      }
+
+      .gutter-#{$i}\@#{$breakpointAlias} {
+        margin: #{($i / -2)}px !important;
+
+        & > * {
+          padding: #{($i / 2)}px !important;
+        }
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------
+// @gutter (5 > 35 Step 5)
+// ---------------------------------------------------------
+
+@for $i from 5 through 35 {
+  @if $i % 5 == 0 {
+    .gutterX-#{$i} {
+      margin-left: #{($i / -2)}px !important;
+      margin-right: #{($i / -2)}px !important;
+
+      & > * {
+        padding-left: #{($i / 2)}px !important;
+        padding-right: #{($i / 2)}px !important;
+      }
+    }
+
+    .gutterY-#{$i} {
+      margin-top: #{($i / -2)}px !important;
+      margin-bottom: #{($i / -2)}px !important;
+
+      & > * {
+        padding-top: #{($i / 2)}px !important;
+        padding-bottom: #{($i / 2)}px !important;
+      }
+    }
+
+    .gutter-#{$i} {
+      margin: #{($i / -2)}px !important;
+
+      & > * {
+        padding: #{($i / 2)}px !important;
+      }
+    }
+
+    @if ($responsive == true) {
+      @include generateResponsive() {
+        .gutterX-#{$i}\@#{$breakpointAlias} {
+          margin-left: #{($i / -2)}px !important;
+          margin-right: #{($i / -2)}px !important;
+
+          & > * {
+            padding-left: #{($i / 2)}px !important;
+            padding-right: #{($i / 2)}px !important;
+          }
+        }
+
+        .gutterY-#{$i}\@#{$breakpointAlias} {
+          margin-top: #{($i / -2)}px !important;
+          margin-bottom: #{($i / -2)}px !important;
+
+          & > * {
+            padding-top: #{($i / 2)}px !important;
+            padding-bottom: #{($i / 2)}px !important;
+          }
+        }
+
+        .gutter-#{$i}\@#{$breakpointAlias} {
+          margin: #{($i / -2)}px !important;
+
+          & > * {
+            padding: #{($i / 2)}px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------
+// @gutter (40 > 160 Step 10)
+// ---------------------------------------------------------
+
+@for $i from 40 through 160 {
+  @if $i % 10 == 0 {
+    .gutterX-#{$i} {
+      margin-left: #{($i / -2)}px !important;
+      margin-right: #{($i / -2)}px !important;
+
+      & > * {
+        padding-left: #{($i / 2)}px !important;
+        padding-right: #{($i / 2)}px !important;
+      }
+    }
+
+    .gutterY-#{$i} {
+      margin-top: #{($i / -2)}px !important;
+      margin-bottom: #{($i / -2)}px !important;
+
+      & > * {
+        padding-top: #{($i / 2)}px !important;
+        padding-bottom: #{($i / 2)}px !important;
+      }
+    }
+
+    .gutter-#{$i} {
+      margin: #{($i / -2)}px !important;
+
+      & > * {
+        padding: #{($i / 2)}px !important;
+      }
+    }
+
+    @if ($responsive == true) {
+      @include generateResponsive() {
+        .gutterX-#{$i}\@#{$breakpointAlias} {
+          margin-left: #{($i / -2)}px !important;
+          margin-right: #{($i / -2)}px !important;
+
+          & > * {
+            padding-left: #{($i / 2)}px !important;
+            padding-right: #{($i / 2)}px !important;
+          }
+        }
+
+        .gutterY-#{$i}\@#{$breakpointAlias} {
+          margin-top: #{($i / -2)}px !important;
+          margin-bottom: #{($i / -2)}px !important;
+
+          & > * {
+            padding-top: #{($i / 2)}px !important;
+            padding-bottom: #{($i / 2)}px !important;
+          }
+        }
+
+        .gutter-#{$i}\@#{$breakpointAlias} {
+          margin: #{($i / -2)}px !important;
+
+          & > * {
+            padding: #{($i / 2)}px !important;
+          }
+        }
+      }
+    }
+  }
+}

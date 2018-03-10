@@ -1,0 +1,31 @@
+@import 'settings/base';
+
+.fz-micro    { font-size: @font-scale-micro; }
+.fz-smallest { font-size: @font-scale-smallest; }
+.fz-smaller  { font-size: @font-scale-smaller; }
+.fz-small    { font-size: @font-scale-small; }
+.fz-base     { font-size: @font-scale-base; }
+.fz-large    { font-size: @font-scale-large; }
+.fz-larger   { font-size: @font-scale-larger; }
+.fz-largest  { font-size: @font-scale-largest; }
+.fz-jumbo    { font-size: @font-scale-jumbo; }
+
+.font-weights(900);
+
+.font-weights(@w) when (@w > 0) {
+    .font-weights((@w - 100));    // next iteration
+
+    .fw-@{w} {
+        font-weight: @w;
+    }
+}
+
+
+.lh-0 {
+    line-height: 0;
+}
+
+
+.lh-1 {
+    line-height: 1;
+}

@@ -1,27 +1,19 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { keys } from 'lodash';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { forOwn, findKey } from 'lodash';
 import md5 from 'js-md5';
 
 import Dashboard         from 'screens/Dashboard';
 import Contacts          from 'screens/Contacts';
 import BlankPage         from 'screens/BlankPage';
-import Calendar          from 'screens/Calendar';
-import MenuLevels        from 'screens/MenuLevels';
 import Notes             from 'screens/Notes';
 import GoogleMaps        from 'screens/GoogleMaps';
-import Shuffle           from 'screens/Shuffle';
 import Tables            from 'screens/Tables';
 import Email             from 'screens/Email';
 import Todos             from 'screens/Todos';
 
-import Checkout          from 'screens/Ecommerce.Checkout';
-import Shop              from 'screens/Ecommerce.Shop';
-import Cards             from 'screens/Ecommerce.Cards';
-import Cart              from 'screens/Ecommerce.Cart';
-
 import Radiobox          from 'screens/Forms.Radiobox';
-import Tab               from 'screens/Forms.Tab';
+import Tabs              from 'screens/Forms.Tabs';
 import Transfer          from 'screens/Forms.Transfer';
 import ValidatableForms  from 'screens/Forms.ValidatableForms';
 import AutoComplete      from 'screens/Forms.AutoComplete';
@@ -29,11 +21,9 @@ import Button            from 'screens/Forms.Button';
 import Checkbox          from 'screens/Forms.Checkbox';
 import Editor            from 'screens/Forms.Editor';
 import Inputs            from 'screens/Forms.Inputs';
-import Progress          from 'screens/Forms.Progress';
 
 import Login             from 'screens/Pages.Login';
 import ForgotPasswords   from 'screens/Pages.ForgotPassword';
-import Invoice           from 'screens/Pages.Invoice';
 import ResetPasswords    from 'screens/Pages.ResetPassword';
 import Register          from 'screens/Pages.Register';
 import NotFound          from 'screens/Pages.404';
@@ -41,11 +31,10 @@ import ServerError       from 'screens/Pages.500';
 
 import Notification      from 'screens/UI.Notification';
 import Pagination        from 'screens/UI.Pagination';
-import PopOver           from 'screens/UI.PopOver';
+import Popover           from 'screens/UI.Popover';
 import PopConfirm        from 'screens/UI.PopConfirm';
 import Rating            from 'screens/UI.Rating';
 import ReactDates        from 'screens/UI.ReactDates';
-import Spin              from 'screens/UI.Spin';
 import Tag               from 'screens/UI.Tag';
 import Timeline          from 'screens/UI.Timeline';
 import Tooltip           from 'screens/UI.Tooltip';
@@ -54,172 +43,85 @@ import UppyUploader      from 'screens/UI.UppyUploader';
 import Alert             from 'screens/UI.Alert';
 import Badge             from 'screens/UI.Badge';
 import Card              from 'screens/UI.Card';
-import Carousal          from 'screens/UI.Carousal';
-import CodeMirror        from 'screens/UI.CodeMirror';
+import Carousel          from 'screens/UI.Carousel';
 import Collapse          from 'screens/UI.Collapse';
-import Dropdown          from 'screens/UI.Dropdown';
 import DropZone          from 'screens/UI.DropZone';
 import Message           from 'screens/UI.Message';
 import Modal             from 'screens/UI.Modal';
+import Progress          from 'screens/UI.Progress';
 
 import Recharts          from 'screens/Charts.Recharts';
 import Victory           from 'screens/Charts.Victory';
-import GoogleCharts      from 'screens/Charts.GoogleCharts';
-import ReactTrend        from 'screens/Charts.ReactTrend';
 
-const
+export const
   PAGES = {
-    '/'                  : Login,
-    '/dashboard'         : Dashboard,
-    '/contacts'          : Contacts,
-    '/checkout'          : Checkout,
-    '/shop'              : Shop,
-    '/cards'             : Cards,
-    '/cart'              : Cart,
-    '/email'             : Email,
-    '/radiobox'          : Radiobox,
-    '/tab'               : Tab,
-    '/transfer'          : Transfer,
-    '/validatable-forms' : ValidatableForms,
-    '/autocomplete'      : AutoComplete,
-    '/button'            : Button,
-    '/checkbox'          : Checkbox,
-    '/editor'            : Editor,
-    '/inputs'            : Inputs,
-    '/progress'          : Progress,
-    '/googlemaps'        : GoogleMaps,
-    '/menu-levels'       : MenuLevels,
-    '/notes'             : Notes,
-    '/forgot-password'   : ForgotPasswords,
-    '/invoice'           : Invoice,
-    '/reset-password'    : ResetPasswords,
-    '/register'          : Register,
-    '/500'               : ServerError,
-    '/shuffle'           : Shuffle,
-    '/tables'            : Tables,
-    '/todos'             : Todos,
-    '/notification'      : Notification,
-    '/pagination'        : Pagination,
-    '/popover'           : PopOver,
-    '/pop-confirm'       : PopConfirm,
-    '/rating'            : Rating,
-    '/react-dates'       : ReactDates,
-    '/spin'              : Spin,
-    '/tag'               : Tag,
-    '/timeline'          : Timeline,
-    '/tooltip'           : Tooltip,
-    '/tree'              : Tree,
-    '/uppy-uploader'     : UppyUploader,
-    '/alert'             : Alert,
-    '/badge'             : Badge,
-    '/card'              : Card,
-    '/carousal'          : Carousal,
-    '/code-mirror'       : CodeMirror,
-    '/collapse'          : Collapse,
-    '/dropdown'          : Dropdown,
-    '/dropzone'          : DropZone,
-    '/message'           : Message,
-    '/modal'             : Modal,
-    '/blank'             : BlankPage,
-    '/calendar'          : Calendar,
-    '/recharts'          : Recharts,
-    '/victory'           : Victory,
-    '/google-charts'     : GoogleCharts,
-    '/react-trend'       : ReactTrend,
+    Login            : { path: '/',                  component: Login },
+    Dashboard        : { path: '/dashboard',         component: Dashboard },
+    Contacts         : { path: '/contacts',          component: Contacts },
+    Email            : { path: '/email',             component: Email },
+    Radiobox         : { path: '/radiobox',          component: Radiobox },
+    Tabs             : { path: '/tabs',              component: Tabs },
+    Transfer         : { path: '/transfer',          component: Transfer },
+    ValidatableForms : { path: '/validatable-forms', component: ValidatableForms },
+    AutoComplete     : { path: '/autocomplete',      component: AutoComplete },
+    Button           : { path: '/button',            component: Button },
+    Checkbox         : { path: '/checkbox',          component: Checkbox },
+    Editor           : { path: '/editor',            component: Editor },
+    Inputs           : { path: '/inputs',            component: Inputs },
+    Progress         : { path: '/progress',          component: Progress },
+    GoogleMaps       : { path: '/google-maps',       component: GoogleMaps },
+    Notes            : { path: '/notes',             component: Notes },
+    ForgotPasswords  : { path: '/forgot-password',   component: ForgotPasswords },
+    ResetPasswords   : { path: '/reset-password',    component: ResetPasswords },
+    Register         : { path: '/register',          component: Register },
+    ServerError      : { path: '/500',               component: ServerError },
+    Tables           : { path: '/tables',            component: Tables },
+    Todos            : { path: '/todos',             component: Todos },
+    Notification     : { path: '/notification',      component: Notification },
+    Pagination       : { path: '/pagination',        component: Pagination },
+    Popover          : { path: '/popover',           component: Popover },
+    PopConfirm       : { path: '/pop-confirm',       component: PopConfirm },
+    Rating           : { path: '/rating',            component: Rating },
+    ReactDates       : { path: '/react-dates',       component: ReactDates },
+    Tag              : { path: '/tag',               component: Tag },
+    Timeline         : { path: '/timeline',          component: Timeline },
+    Tooltip          : { path: '/tooltip',           component: Tooltip },
+    Tree             : { path: '/tree',              component: Tree },
+    UppyUploader     : { path: '/uppy-uploader',     component: UppyUploader },
+    Alert            : { path: '/alert',             component: Alert },
+    Badge            : { path: '/badge',             component: Badge },
+    Card             : { path: '/card',              component: Card },
+    Carousel         : { path: '/carousel',          component: Carousel },
+    Collapse         : { path: '/collapse',          component: Collapse },
+    DropZone         : { path: '/dropzone',          component: DropZone },
+    Message          : { path: '/message',           component: Message },
+    Modal            : { path: '/modal',             component: Modal },
+    BlankPage        : { path: '/blank',             component: BlankPage },
+    Recharts         : { path: '/recharts',          component: Recharts },
+    Victory          : { path: '/victory',           component: Victory },
   };
 
 const
-  PATHS = keys(PAGES);
+  PATHS      = [],
+  COMPONENTS = [];
 
-// const
-//   publicPath  = '/',
-//   privatePath = '/dashboard/';
-
-// const
-//   routeCodes = {
-//     login          : publicPath,
-//     register       : `${ publicPath }register`,
-//     forgotPassword : `${ publicPath }forgot-password`,
-//     resetPassword  : `${ publicPath }reset-password`,
-//     serverError    : `${ publicPath }500`,
-//     dashboard      : privatePath,
-//   };
-
-// const
-//   PublicRoute = ({ component: Component, ...rest }) => (
-//     <Route
-//       render={
-//         props => {
-//           return <Component auth={Auth0} {...props} />;
-//         }
-//       }
-//       {...rest}
-//     />
-//   );
-
-// PublicRoute.propTypes = {
-//   component : PropTypes.any,
-// };
-
-// const
-//   RestrictedRoute = ({ component: Component, isAuthenticated, ...rest }) => (
-//     <Route
-//       render={
-//         props => {
-//           console.log('=====> isAuthenticated from routes', isAuthenticated)
-//           isAuthenticated = true
-//           if (isAuthenticated) {
-//             return <Component {...props} />;
-//           }
-
-//           return (
-//             <Redirect
-//               to={{
-//                 pathname: routeCodes.intro,
-//                 state: { from: props.location },
-//               }}
-//             />
-//           );
-//         }
-//       }
-//       {...rest}
-//     />
-//   );
-
-// RestrictedRoute.propTypes = {
-//   component       : PropTypes.func,
-//   isAuthenticated : PropTypes.any,
-//   location        : PropTypes.object,
-// };
-
-// const
-//   DoRoute = ({ path, component, ...rest }) => {
-//     const
-//       Unit = component ? import(component) : null;
-
-//     return (
-//       <Route
-//         path={path}
-//         component={Unit}
-//         {...rest}
-//       />
-//     );
-//   };
-
-// DoRoute.propTypes = {
-//   path      : PropTypes.string,
-//   component : PropTypes.string,
-// };
+forOwn(PAGES, (val, key) => {
+  PATHS.push(val.path);
+  COMPONENTS.push(val.component);
+});
 
 const
   Routes = () => (
     <Switch>
       {
-        PATHS.map((path, i) => (
-          <Route exact path={path} key={md5(path + i)} component={PAGES[path]} />)
-        )
+        PATHS.map((path, i) => {
+          const PAGE = PAGES[findKey(PAGES, obj => obj.path === path)];
+          const COMPONENT = PAGE.component;
+          return <Route exact path={path} key={md5(path + i)} component={COMPONENT} />;
+        })
       }
-      <Route path='*' component={ NotFound } />
+      <Route path='/404' component={NotFound} />
+      <Redirect from='*' to='/404' />
     </Switch>
   );
 

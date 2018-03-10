@@ -1,0 +1,196 @@
+@import 'settings/base';
+
+div.filepicker {
+  width: 100%;
+  min-height: 320px;
+  padding: 35px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 1px dashed @color--Border;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+
+  .closeBtn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0;
+    margin-right: 0;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &:before {
+      content: '\f2d7';
+      font-family: 'ionicons';
+      font-size: @fontSize;
+      color: @color--TextDark;
+      line-height: 1;
+    }
+
+    &:hover {
+      &:before {
+        color: @color--Heading;
+      }
+    }
+  }
+
+  .dz-message {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+    span {
+      font-size: @fontSize;
+      color: @color--TextDark;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+  }
+
+  .dz-progress {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: none;
+    background-color: fade(#fff, 80%);
+  }
+
+  .dz-preview {
+    width: 100px;
+    height: 127px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow: hidden;
+    float: left;
+    position: relative;
+    margin: 0;
+    margin-left: 2px;
+    margin-bottom: 2px;
+
+    .dz-progress {
+      display: none;
+    }
+
+    .dz-image {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 2px;
+      display: block;
+      flex-shrink: 0;
+      overflow-y: hidden;
+      position: relative;
+      background: none;
+      background-color: @color--LighterBluish;
+
+      img {
+        max-width: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+    }
+
+    .dz-details {
+      width: 100%;
+      height: 25px;
+      padding: 0 8px;
+      flex-shrink: 0;
+      opacity: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      cursor: default;
+      background-color: @color--LightBluish;
+
+      .dz-size {
+        display: none;
+      }
+      .dz-filename {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        span {
+          font-size: @fontSize;
+          color: lighten(@color--Heading, 22%);
+          white-space: nowrap;
+          background-color: transparent;
+        }
+
+        &:not(:hover) {
+          span {
+            border: 0;
+          }
+        }
+
+        &:hover {
+          span {
+            border: 0;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+
+    .dz-success-mark {
+      display: none;
+    }
+
+    .dz-remove {
+      font-size: @fontSize;
+      font-weight: 400;
+      background-color: @error-color;
+      width: 100%;
+      height: 25px;
+      color: #fff;
+      line-height: 25px;
+      display: inline-block;
+      text-align: center;
+      position: absolute;
+      bottom: -25px;
+      left: 0px;
+      cursor: pointer;
+      border: 0;
+      outline: 0;
+      padding: 0;
+    }
+
+    &:hover {
+      .dz-remove {
+        bottom: 0;
+      }
+    }
+  }
+
+  &.dz-started {
+    .dz-message {
+      display: none;
+    }
+  }
+}

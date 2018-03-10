@@ -17,7 +17,6 @@
 *.css    text
 *.html   text
 *.js     text
-*.jsx    text
 *.json   text
 *.scss   text
 
@@ -28,11 +27,8 @@
 # -----------------------------
 
 *.md         text
-AUTHORS      text
 CHANGELOG    text
-CONTRIBUTING text
 LICENSE      text
-*README*     text
 
 
 
@@ -44,8 +40,13 @@ LICENSE      text
 .gitattributes text
 .gitconfig     text
 .gitignore     text
-*.npmignore    text
+.babelrc       text
+.stylelintrc   text
+.eslintrc      text
+.yarnclean     text
 *.yml          text
+browserlist    text
+yarn.lock      text
 
 
 

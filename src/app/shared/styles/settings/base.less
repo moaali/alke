@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
+@import 'theme';
+
+@fontFamily: 'Roboto', sans-serif;
+@fontSize: 14px;
+
+//  Colors
+@color--Heading: #323332;
+@color--Text: #979797;
+@color--TextDark: #797979; //Previous: @color--GreyText
+@color--HeadingLight: #595959;
+@color--GreyShade: #bababa;
+@color--GreyDark: #c1c1c1;
+@color--Grey: #D8D8D8;
+@color--GreyAlt: #f1f1f1;
+@color--GreyLight: #F3F3F3;
+@color--DarkWhite: #fafafa;
+@color--DarkerWhite: #F9F9F9;
+@color--Blue: #2980B9;
+@color--LimeGreen: #96CA2D;
+@color--Orange: #FEAC01;
+@color--Yellow: #FFCA28;
+@color--Pink: #EA2E49;
+@color--Purple: #42299a;
+@color--DarkBlue: #2d3446;
+@color--DarkerBlue: #2b303b;
+@color--BlueShade: #39435f;
+@color--LightBlue: #788195;
+@color--LightBluish: #f1f3f6;
+@color--LighterBluish: #f5f6f8;
+@color--DarkBluish: #e9ebf1;
+@color--Red: #d10000;
+@color--White: #ffffff;
+
+@color--Border: #e9e9e9;
+@color--BorderDark: #d8d8d8;
+@color--BorderLight: #ebebeb;
+
+// Theme Colors
+@themeColor--AlizarinCrimson: #e0364c;
+@themeColor--Violet: #6534ff;
+@themeColor--DodgerBlue : #4482FF;
+@themeColor--ElectricViolet : #b025e8;
+@themeColor--Valhalla : #22144c;
+@themeColor--SanMarino : #4670a2;
+@themeColor--EastBay : #494982;
+
+// Font Sizes
+@font-scale-micro    : 8px;
+@font-scale-smallest : 0.7rem;
+@font-scale-smaller  : 0.75rem;
+@font-scale-small    : 0.875rem;
+@font-scale-base     : 14px;
+@font-scale-large    : 1.25rem;
+@font-scale-larger   : 1.75rem;
+@font-scale-largest  : 2.75rem;
+@font-scale-jumbo    : 4.75rem;
+
+.transition (@time: 0.3s, @prop: all, @tran: cubic-bezier(0.215, 0.61, 0.355, 1)) {
+  -webkit-transition: @prop @time @tran;
+  -moz-transition: @prop @time @tran;
+  -ms-transition: @prop @time @tran;
+  -o-transition: @prop @time @tran;
+  transition: @prop @time @tran;
+}
+
+.borderRadius (@radius : 5px 5px 5px 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.boxShadow (@values) {
+  -webkit-box-shadow: @values;
+  -moz-box-shadow: @values;
+  box-shadow: @values;
+}

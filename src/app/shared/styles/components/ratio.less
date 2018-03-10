@@ -1,0 +1,40 @@
+ .ratio {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.ratio::before {
+  display: block;
+  width: 100%;
+  padding-bottom: 100%;
+  content: '';
+}
+
+[class*='ratio-2/1']::before {
+  padding-bottom: 50%;
+}
+
+[class*='ratio-4/3']::before {
+  padding-bottom: calc(100% * 3 / 4);
+}
+
+[class*='ratio-3/2']::before {
+  padding-bottom: calc(100% * 2 / 3);
+}
+
+[class*='ratio-16/9']::before {
+  padding-bottom: calc(100% * 9 / 16);
+}
+
+.ratioContent,
+.ratio > iframe,
+.ratio > embed,
+.ratio > object {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}

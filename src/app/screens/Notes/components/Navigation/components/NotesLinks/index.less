@@ -1,0 +1,34 @@
+@import 'settings/base';
+
+.NotesListItem {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0625);
+  cursor: pointer;
+  position: relative;
+  background: #fff;
+  .transition;
+
+  &:hover:not(.active) {
+    background: rgba(0, 0, 0, .04);
+  }
+
+  &.active {
+    color: #fff;
+  }
+}
+
+.NoteListItemText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.NoteListItemColor {
+  width: 3px;
+  height: calc(100% + 1px);
+  z-index: 10;
+  font-size: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

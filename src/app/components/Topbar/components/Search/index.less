@@ -1,0 +1,67 @@
+@import 'settings/base';
+
+.searchModal {
+  .ant-modal {
+    top: 150px;
+    padding-bottom: 0;
+  }
+
+  .ant-modal-close-x {
+    display: none;
+  }
+
+  .ant-modal-content {
+    overflow: hidden;
+    border-radius: 5px;
+
+    .ant-modal-header {
+      display: none;
+    }
+
+    .ant-modal-body {
+      padding: 0px;
+
+      .searchContainer {
+        .ant-input-search {
+          .ant-input {
+            border: 0;
+            border-radius: 0;
+            padding-left: 55px;
+            padding-right: 15px;
+            height: 60px;
+            font-size: 14px;
+
+            &::-webkit-input-placeholder {
+              color: @color--GreyShade;
+            }
+
+            &:-moz-placeholder {
+              color: @color--GreyShade;
+            }
+
+            &::-moz-placeholder {
+              color: @color--GreyShade;
+            }
+            &:-ms-input-placeholder {
+              color: @color--GreyShade;
+            }
+
+            &:focus {
+              outline: 0;
+              box-shadow: none;
+            }
+          }
+        }
+
+        .ant-input-suffix {
+          right: auto;
+          left: 20px;
+
+          .ant-input-search-icon {
+            margin-top: 2px;
+          }
+        }
+      }
+    }
+  }
+}

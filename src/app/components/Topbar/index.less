@@ -1,0 +1,33 @@
+@import 'settings/base';
+
+.Topbar {
+  width: 100%;
+  background: #fff;
+  padding-left: 240px;
+  padding-right: 24px;
+  z-index: 1000;
+  .transition;
+
+  &.collapsed {
+    padding-left: 64px;
+  }
+
+  &.collapsed.MobileView {
+    padding-left: 0;
+  }
+
+  .iconWrapper {
+    cursor: pointer;
+  }
+
+  .peer:not(:last-child) .iconWrapper {
+    margin-right: 30px;
+  }
+
+}
+
+
+.topbarIcon {
+  font-size: 24px;
+  fill: rgba(0, 0, 0, 0.8);
+}

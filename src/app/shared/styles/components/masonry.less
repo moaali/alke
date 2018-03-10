@@ -1,0 +1,28 @@
+.Masonry {
+  margin: -10px;
+}
+
+.MasonrySizer {
+  position: absolute;
+}
+
+.MasonrySizer,
+.MasonryItem {
+  width: 50%;
+
+  @media screen and (max-width: 991px) {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 1600px) {
+    width: calc(100% / 3);
+  }
+}
+
+.MasonryItem {
+  padding: 10px;
+}
+
+.MasonryItem-full {
+  width: 100% !important;
+}

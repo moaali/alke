@@ -1,0 +1,49 @@
+#NotesCategories {
+  padding: 40px 20px;
+  min-width: 220px;
+  background: #1A1F2B;
+
+  @media screen and (min-width: 768px) {
+    width: 33%;
+    max-width: 280px;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+
+  .ant-radio-button-wrapper {
+    color: rgba(255, 255, 255, 0.4);
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: 0;
+    font-size: 13px;
+    line-height: 50px;
+    height: auto;
+    box-shadow: none;
+    background: transparent;
+
+    &:not(:last-child) {
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.0625);
+    }
+
+    &:before {
+      display: none;
+    }
+
+    &:hover {
+      color: #fff;
+    }
+
+    .ant-radio-button + span {
+      display: flex;
+    }
+  }
+
+  .ant-radio-button-wrapper-checked {
+    color: #fff;
+  }
+}
+
+

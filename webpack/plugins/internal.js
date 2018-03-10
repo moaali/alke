@@ -25,53 +25,34 @@ const
 // ---------------
 
 const
-  plugins  = [];
+  plugins = [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(manifest.NODE_ENV),
+    }),
 
-plugins.concat([
-  new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: JSON.stringify(manifest.NODE_ENV),
-    },
-  }),
-
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor',
-    filename: manifest.outputFiles.vendor,
-    minChunks(module) {
-      const context = module.context;
-      return context && context.indexOf('node_modules') >= 0;
-    },
-  }),
-]);
-
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: manifest.outputFiles.vendor,
+      minChunks(module) {
+        const context = module.context;
+        return context && context.indexOf('node_modules') >= 0;
+      },
+    }),
+  ];
 
 // ---------------------------
 // @Merging Production Plugins
 // ---------------------------
 
-if (manifest.IS_PRODUCTION) {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        comparisons   : true,
-        conditionals  : true,
-        dead_code     : true,
-        drop_debugger : true,
-        evaluate      : true,
-        if_return     : true,
-        join_vars     : true,
-        screw_ie8     : true,
-        sequences     : true,
-        unused        : true,
-        warnings      : false,
-      },
-
-      output: {
-        comments: false,
-      },
-    })
-  );
-}
+// if (manifest.IS_PRODUCTION) {
+//   plugins.push(
+//     new webpack.optimize.UglifyJsPlugin({
+//       comporess: {
+//         warnings: true,
+//       },
+//     })
+//   );
+// }
 
 
 // ----------------------------

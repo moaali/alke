@@ -18,7 +18,7 @@
 const
   manifest          = require('../manifest'),
   path              = require('path'),
-  cssNext           = require('postcss-cssnext'),
+  // cssNext           = require('postcss-cssnext'),
   ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
@@ -36,15 +36,15 @@ const loaders = [
       minimize  : manifest.IS_PRODUCTION,
     },
   },
-  {
-    loader: 'postcss-loader',
-    options: {
-      sourceMap: manifest.IS_DEVELOPMENT,
-      plugins: () => [
-        cssNext(),
-      ],
-    },
-  },
+  // {
+  //   loader: 'postcss-loader',
+  //   options: {
+  //     sourceMap: manifest.IS_DEVELOPMENT,
+  //     plugins: () => [
+  //       cssNext(),
+  //     ],
+  //   },
+  // },
   {
     loader: 'sass-loader',
     options: {

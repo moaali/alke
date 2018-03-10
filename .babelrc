@@ -5,10 +5,20 @@
     "syntax-decorators",
     "syntax-do-expressions",
     "transform-object-rest-spread",
-    ["import", { "libraryName": "antd", "style": "css" }]
+    "syntax-dynamic-import",
+    [
+      "import", {
+        "libraryName": "antd",
+        "style": true
+      }
+    ]
   ],
   "presets": [
-    ["es2015", { "modules": false }],
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7"]
+      }
+    }],
     "stage-0",
     "react"
   ],
@@ -17,9 +27,6 @@
       "plugins": [
         "react-hot-loader/babel"
       ]
-    },
-    "production": {
-      "presets": ["react-optimize"]
     }
   }
 }

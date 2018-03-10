@@ -1,0 +1,21 @@
+@import 'settings/base.less';
+
+.helperText {
+  font-size: @fontSize - 2;
+  font-weight: 400;
+  line-height: 1.2;
+  color: @color--GreyDark;
+
+  &::before {
+    content: '*';
+    color: @error-color;
+    padding-right: 3px;
+    font-size: @fontSize;
+    position: absolute;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 2px;
+    left: 0;
+  }
+}

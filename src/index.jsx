@@ -1,3 +1,4 @@
+import 'react-dates/initialize';
 import React from 'react';
 import ReactDom from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -8,11 +9,27 @@ import { LocaleProvider } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 import 'babel-polyfill';
 import 'whatwg-fetch';
-import 'bootstrap/dist/css/bootstrap.css';
+import 'shared/styles/index.less';
+import 'funkcss';
 import App from './app';
 import stores from './app/shared/stores';
+import './app/shared/styles/utils/gutter.scss';
 
 es6Promise.polyfill();
+
+/**
+ * NOTE: Trigger resize event for Masonry layout
+ * after window load
+ */
+const EVENT = document.createEvent('UIEvents');
+window.EVENT = EVENT;
+EVENT.initUIEvent('resize', true, false, window, 0);
+window.addEventListener('load', () => {
+  window.dispatchEvent(EVENT);
+  document.addEventListener('click', () => {
+    window.dispatchEvent(EVENT);
+  }, true);
+});
 
 const
   render = Component => {
@@ -33,9 +50,6 @@ const
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./app', () => {
-    const NewApp = require('./app').default;
-
-    render(NewApp);
-  });
+  module.hot.accept();
 }
+

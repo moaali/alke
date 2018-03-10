@@ -1,0 +1,56 @@
+#Sidebar {
+  position: fixed;
+
+  .ant-layout-sider-children {
+    height: 100%;
+  }
+
+  .ant-menu {
+    background: transparent;
+  }
+
+  .ant-menu-sub {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .ant-menu-item:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.0625);
+  }
+
+  .ant-menu-item,
+  .ant-menu-submenu {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.0625);
+  }
+
+  .ant-menu-sub > .ant-menu-item {
+    padding: 0 20px !important;
+  }
+
+  .ant-menu-item-selected {
+    background-color: rgba(0, 0, 0, 0.2)
+  }
+
+  .nav-text {
+    border-left: 1px solid rgba(255, 255, 255, 0.0625);
+    margin-left: 20px;
+    padding-left: 20px;
+  }
+
+  &.MobileView {
+    transform: translate3d(-100%, 0, 0);
+
+    &.shown {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+#SidebarMenuBox {
+  height: ~"calc(100% - 157px)";
+}
+
+.ant-tooltip .nav-text {
+  border-left: 0;
+  margin-left: 0;
+  padding-left: 12px;
+}

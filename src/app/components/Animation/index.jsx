@@ -3,7 +3,7 @@ import { Motion, spring, presets } from 'react-motion';
 import classNames from 'classnames/dedupe';
 import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
-import './index.scss';
+import './index.less';
 
 export default class Animation extends Component {
   static propTypes = {

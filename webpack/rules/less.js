@@ -18,7 +18,8 @@
 const
   manifest          = require('../manifest'),
   path              = require('path'),
-  cssNext           = require('postcss-cssnext'),
+  // cssNext           = require('postcss-cssnext'),
+  // prescss           = require('precss'),
   ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
@@ -36,21 +37,23 @@ const loaders = [
       minimize  : manifest.IS_PRODUCTION,
     },
   },
-  {
-    loader: 'postcss-loader',
-    options: {
-      sourceMap: manifest.IS_DEVELOPMENT,
-      plugins: () => [
-        cssNext(),
-      ],
-    },
-  },
+  // {
+  //   loader: 'postcss-loader',
+  //   options: {
+  //     sourceMap: manifest.IS_DEVELOPMENT,
+  //     // plugins: () => [
+  //     //   cssNext(),
+  //     //   prescss(),
+  //     // ],
+  //   },
+  // },
   {
     loader: 'less-loader',
     options: {
       sourceMap: manifest.IS_DEVELOPMENT,
       paths: [
         path.join(manifest.paths.src, 'app', 'shared', 'styles'),
+        path.join(__dirname, '../../node_modules'),
       ],
     },
   },

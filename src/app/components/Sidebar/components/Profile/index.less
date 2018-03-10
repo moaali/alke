@@ -1,0 +1,55 @@
+@import 'settings/base';
+
+#SideBarProfile {
+  color: #fff;
+}
+
+#AvatarBox {
+  img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.userActivity {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+
+  &.online {
+    background-color: @color--LimeGreen;
+  }
+}
+
+.userDropdownContent {
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ffffff;
+  width: 220px;
+  min-width: 160px;
+  flex-shrink: 0;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+
+  .dropdownLink {
+    font-size: @fontSize - 1;
+    color: @color--HeadingLight;
+    line-height: 1.1;
+    padding: 7px 15px;
+    background-color: transparent;
+    text-decoration: none;
+    display: flex;
+    justify-content: flex-start;
+
+    &:hover {
+      background-color: @color--LighterBluish;
+    }
+  }
+}

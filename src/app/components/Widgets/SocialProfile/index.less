@@ -1,0 +1,24 @@
+.profileStats {
+  @media screen and (max-width: 479px) {
+    flex-flow: column nowrap;
+
+    & > div {
+      width: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+      border: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.0625)
+      }
+
+      & p {
+        text-align: right;
+      }
+    }
+  }
+}

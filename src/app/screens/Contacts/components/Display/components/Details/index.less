@@ -1,0 +1,30 @@
+.ContactDetails:not(.withEditMode) {
+  input,
+  textarea {
+    border: none;
+    background: none;
+    cursor: default;
+
+    &:focus {
+      outline: none;
+      border: none;
+      box-shadow: none;
+    }
+
+    @media screen and (max-width: 881px) {
+      padding-left: 0;
+    }
+  }
+}
+
+.contactAvatar-big {
+  width: 128px;
+  height: 128px;
+}
+
+.contactPreview {
+  @media screen and (max-width: 881px) {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+}
